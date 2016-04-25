@@ -2,17 +2,28 @@ package expressions;
 
 import java.util.ArrayList;
 
+/*
+ *  Polynomial class that represents a polynomial of a group of algebraic expressions.
+ */
+
 public class Polynomial {
 	
 	private ArrayList<Term> myPolynomial;
     
-	//Constructor that instantiates a Polynomial object with an empty ArrayList
+	
+    /* 
+     *  Constructor that instantiates a Polynomial object with an empty ArrayList.
+     */
 	public Polynomial() {
 		myPolynomial = new ArrayList<Term>();
 	}
 	
-	//Insert method that adds new terms to the polynomial ArrayList in sorted order
-	//Since the ArrayList is always almost sorted, time complexity is O(N)
+   /*	
+	*  Insert method that adds new terms to the polynomial ArrayList in sorted order. 
+	*  Since the ArrayList is always almost sorted, time complexity is O(N).
+	*  @param coefficient   the coefficient of Term to be inserted
+	*  @param exponent      the exponent of Term to be inserted
+	*/
     public void insertTerm(int coefficient, int exponent){
     	Term newTerm = new Term(coefficient, exponent);
     	myPolynomial.add(newTerm);
@@ -33,9 +44,14 @@ public class Polynomial {
     	}
     }
     
-    //Method to return all the terms in the polynomial in string format
-    public String getPolynomial(){
-    	String result = myPolynomial.get(0).toString() + " ";
+    
+    /*	
+ 	*  Method to return all the terms in the polynomial in descending order of exponent 
+ 	*  @return    the terms in the polynomial in descending order of exponent
+ 	*/
+    
+    public String product(){
+    	String result = "P(X) = " + myPolynomial.get(0).toString() + " ";
     	for(int i = 1; i < myPolynomial.size(); i++){
     		if (myPolynomial.get(i).getCoefficient() > 0){
     			result += "+" + myPolynomial.get(i).toString() + " ";
@@ -47,7 +63,12 @@ public class Polynomial {
     	return result;
     }
     
-    //Method to delete a term from the polynomial
+   
+    /*	
+ 	*  Method to delete a term from the polynomial
+ 	*  @param coefficient   the coefficient of Term to be deleted
+ 	*  @param exponent      the exponent of Term to be deleted
+ 	*/
     public void deleteTerm(int coefficient, int exponent){
     	int index = -1;
     	for (int i = 0; i < myPolynomial.size(); i++){
@@ -64,9 +85,14 @@ public class Polynomial {
     	
     }
     
+    /*
+     * Method to return the polynomial in reverse order of the exponents.
+     * @return     the terms in the polynomial in ascending order of exponent
+     */
+    
     public String reversePolynomial(){
     	int last_index = myPolynomial.size() - 1;
-    	String result = myPolynomial.get(last_index).toString() + " ";
+    	String result = "P(X) = " + myPolynomial.get(last_index).toString() + " ";
     	for(int i = last_index - 1; i >= 0; i--){
     		if (myPolynomial.get(i).getCoefficient() > 0){
     			result += "+" + myPolynomial.get(i).toString() + " ";
